@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const CreateUser = () => {
+const EditUser = () => {
     const navigate = useNavigate(); // i used it in line-22 to go back to home page after data get saved
    const[inputs, setInputs]= useState({}) 
 
@@ -21,24 +21,33 @@ axios.get(`http://localhost:80/React/BackEnd_For_React/theUsers.php/${id}`).then
 })
 }
 
-
+    const Timer =()=>{
+         setTimeout(() => {
+                alert('The Values have been updated succesfully')
+                  navigate('/');
+            }, 2000);
+    }
+           
     const handleChange= (event)=>{
         const name = event.target.name; // to get the name of the input
         const value = event.target.value; // to get the value of the input 
         
         setInputs(values =>({...values, [name]: value})); // to set the values (the name of input then : the value of that input) to values
     }  
+    
 
     const handleSubmit =(event)=>{
         event.preventDefault(); // to prevent the page from refresh on submit
 
         axios.put(`http://localhost:80/React/BackEnd_For_React/theUsers.php/${id}/edit`, inputs).then(function(response){
          console.log(response.data); 
-         navigate('/');
+         Timer()
+         
         }) // to go to this api link (My Backend) , with my inputs data .then update user based on id when we use put message in console.log then go to homePage
 
 
         // console.log(inputs)
+        
     }
 
   return (
@@ -61,6 +70,6 @@ axios.get(`http://localhost:80/React/BackEnd_For_React/theUsers.php/${id}`).then
   )
 }
 
-export default CreateUser
+export default EditUser
 
 

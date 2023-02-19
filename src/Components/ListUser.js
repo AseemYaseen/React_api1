@@ -6,6 +6,8 @@ const ListUser = () => {
 
     const [users, setUsers]=useState([]) // to set data into mypage
 
+
+    
     useEffect(()=>{
         getUsers();
     }, []);
@@ -17,12 +19,18 @@ const ListUser = () => {
         setUsers(response.data); // add data to my useState
     })
  }
+
+
  const deleteUser = (id)=>{
-    axios.delete(`http://localhost:80/React/BackEnd_For_React/theUsers.php/${id}/delete`).then(function(response){
-        console.log(response.data)
-        getUsers();
-    })
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if (confirmDelete) {
+        axios.delete(`http://localhost:80/React/BackEnd_For_React/theUsers.php/${id}/delete`).then(function(response){
+            console.log(response.data)
+            getUsers();
+        })
+    
  }
+}
   return (
     <div>
     <h3>List of users</h3>

@@ -1,7 +1,9 @@
 import ListUser from "./Components/ListUser";
 import CreateUser from "./Components/CreateUser";
 import EditUser from "./Components/EditUser";
+
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import Login from "./Components/Login";
 
 
 function App() {
@@ -19,11 +21,15 @@ function App() {
         <li>
           <Link to='user/create'>Create User</Link>
         </li>
+        <li>
+          <Link to='user/login'>Login</Link>
+        </li>
       </ul>
      </nav>
      <Routes>
       <Route index element={<ListUser/>} />
       <Route path="user/create" element={<CreateUser/>} />
+      <Route path="user/login" element={<Login/>} />
       <Route path="user/:id/edit" element={<EditUser/>} />
      </Routes>
      </BrowserRouter>

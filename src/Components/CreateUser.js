@@ -7,6 +7,7 @@ const CreateUser = () => {
    const[inputs, setInputs]= useState({}) 
 
 
+
     const handleChange= (event)=>{
         const name = event.target.name; // to get the name of the input
         const value = event.target.value; // to get the value of the input 
@@ -19,6 +20,7 @@ const CreateUser = () => {
 
         axios.post('http://localhost:80/React/BackEnd_For_React/theUsers.php', inputs).then(function(response){
          console.log(response.data); 
+         
          navigate('/');
         }) // to go to this api link (My Backend) , with my inputs data .then show message in console.log then go to homePage
 
